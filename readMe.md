@@ -5,3 +5,5 @@
     type activate
 3. Install scikit-learn
     pip install scikit-learn
+4. Install pandas
+    pip install pandas scikit-learn numpy matplotlib seaborn

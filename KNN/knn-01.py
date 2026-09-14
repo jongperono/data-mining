@@ -1,29 +1,33 @@
-from sklearn import datasets
+from sklearn.datasets import load_iris
 from sklearn.model_selection import train_test_split
-from sklearn.svm import SVC
+from sklearn.neighbors import KNeighborsClassifier
 from sklearn.metrics import accuracy_score, classification_report
 
-# 1. Load data
-iris = datasets.load_iris()
-print(iris.data)
-print('----------')
-print(iris.target)
-X = iris.data       # 4 features
-y = iris.target     # 3 classes
 
-# 2. Split into train/test
+### -------------------------- ###
+
+# Example 1: Basic KNN (Iris Dataset)
+
+### -------------------------- ###
+
+
+# 1. Load data
+iris = load_iris()
+X, y = iris.data, iris.target
+
+# 2. Split
 X_train, X_test, y_train, y_test = train_test_split(
     X, y, test_size=0.3, random_state=42
 )
 
-# 3. Create SVM model
-model = SVC(kernel='rbf', C=1.0, gamma='scale')
+# 3. Create KNN (K = 5)
+knn = KNeighborsClassifier(n_neighbors=5)
 
-# 4. Train
-model.fit(X_train, y_train)
+# 4. "Train" — just stores the data!
+knn.fit(X_train, y_train)
 
 # 5. Predict
-y_pred = model.predict(X_test)
+y_pred = knn.predict(X_test)
 
 # 6. Evaluate
 print(f"Accuracy: {accuracy_score(y_test, y_pred):.2f}")
